@@ -22,31 +22,47 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     setIsMounted(true);
-    const storedTheme = localStorage.getItem('theme-mode') as Theme | null;
-    const storedPalette = localStorage.getItem('theme-palette') as PaletteName | null;
-    
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    
-    setThemeState(storedTheme || systemTheme);
-    setPaletteState(storedPalette || 'Sky Serenity');
+    try {
+      const storedTheme = localStorage.getItem('theme-mode') as Theme | null;
+      const storedPalette = localStorage.getItem('theme-palette') as PaletteName | null;
+      
+      if (storedTheme) {
+        setThemeState(storedTheme);
+      } else {
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        setThemeState(systemTheme);
+      }
+
+      if (storedPalette) {
+        setPaletteState(storedPalette);
+      } else {
+        setPaletteState('Sky Serenity');
+      }
+    } catch (e) {
+      // Gracefully handle environments where localStorage is not available.
+      setThemeState('light');
+      setPaletteState('Sky Serenity');
+    }
   }, []);
 
-  useEffect(() => {
-    if (isMounted) {
-      const root = document.documentElement;
-      root.classList.remove('light', 'dark');
-      root.classList.add(theme);
-      localStorage.setItem('theme-mode', theme);
-    }
-  }, [theme, isMounted]);
+  const setTheme = (newTheme: Theme) => {
+    const root = window.document.documentElement;
+    root.classList.remove('light', 'dark');
+    root.classList.add(newTheme);
+    localStorage.setItem('theme-mode', newTheme);
+    setThemeState(newTheme);
+  };
   
+  const setPalette = (newPalette: PaletteName) => {
+    localStorage.setItem('theme-palette', newPalette);
+    setPaletteState(newPalette);
+  }
+
   useEffect(() => {
     if (isMounted) {
       const selectedPalette = appThemes.primaryColorsThemes[palette];
       if (selectedPalette) {
-        const root = document.documentElement;
-        
-        // Use the appropriate variables based on light/dark mode
+        const root = window.document.documentElement;
         const themeVariables = selectedPalette[theme];
         
         const colorMap = {
@@ -70,31 +86,34 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
           '--input': themeVariables['--border-color'],
           '--ring': themeVariables['--accent-primary'],
         };
-        
+
         for (const [key, value] of Object.entries(colorMap)) {
             if (value) {
                 root.style.setProperty(key, `hsl(${value})`);
             }
         }
-        
-        localStorage.setItem('theme-palette', palette);
       }
     }
   }, [palette, theme, isMounted]);
 
+  useEffect(() => {
+    if (isMounted) {
+        const root = window.document.documentElement;
+        root.classList.remove('light', 'dark');
+        root.classList.add(theme);
+    }
+  }, [theme, isMounted]);
+
 
   const value = {
     theme,
-    setTheme: (newTheme: Theme) => {
-      setThemeState(newTheme);
-    },
+    setTheme,
     palette,
-    setPalette: (newPalette: PaletteName) => {
-      setPaletteState(newPalette);
-    },
+    setPalette,
   };
   
   if (!isMounted) {
+    // Render nothing on the server and on the initial client render to avoid hydration mismatches.
     return null; 
   }
 
