@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Palette, Sun, Moon, Check } from 'lucide-react';
@@ -12,6 +13,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
+  DropdownMenuSeparator
 } from '@/components/ui/dropdown-menu';
 import { appThemes } from '@/lib/themes';
 
@@ -19,6 +21,7 @@ export function ThemeSwitcher() {
   const { setTheme, setPalette, palette, theme } = useTheme();
 
   const primaryColorThemes = Object.entries(appThemes.primaryColorsThemes);
+  const daisyUIThemes = Object.entries(appThemes.daisyUIThemes);
 
   return (
     <DropdownMenu>
@@ -39,6 +42,7 @@ export function ThemeSwitcher() {
           <span>Dark</span>
            {theme === 'dark' && <Check className="ml-auto h-4 w-4" />}
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
             <span>Primary Colors</span>
@@ -49,6 +53,28 @@ export function ThemeSwitcher() {
                 <DropdownMenuItem
                   key={name}
                   onClick={() => setPalette(name as keyof typeof appThemes.primaryColorsThemes)}
+                >
+                  <div
+                    className="w-4 h-4 rounded-full mr-2 border"
+                    style={{ backgroundColor: themeData.swatchColor }}
+                  ></div>
+                  <span>{name}</span>
+                  {palette === name && <Check className="ml-auto h-4 w-4" />}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            <span>DaisyUI Themes</span>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              {daisyUIThemes.map(([name, themeData]) => (
+                <DropdownMenuItem
+                  key={name}
+                  onClick={() => setPalette(name as keyof typeof appThemes.daisyUIThemes)}
                 >
                   <div
                     className="w-4 h-4 rounded-full mr-2 border"

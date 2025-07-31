@@ -1,10 +1,11 @@
+
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { appThemes } from '@/lib/themes';
 
 type Theme = 'light' | 'dark';
-type PaletteName = keyof typeof appThemes.primaryColorsThemes;
+type PaletteName = keyof typeof appThemes.primaryColorsThemes | keyof typeof appThemes.daisyUIThemes;
 
 interface ThemeProviderState {
   theme: Theme;
@@ -27,6 +28,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       const storedPalette = localStorage.getItem('theme-palette') as PaletteName | null;
       
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      
       setThemeState(storedTheme || systemTheme);
       setPaletteState(storedPalette || 'Sky Serenity');
 
@@ -48,24 +50,21 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (isMounted) {
-      const selectedPalette = appThemes.primaryColorsThemes[palette];
+      const allThemes = { ...appThemes.primaryColorsThemes, ...appThemes.daisyUIThemes };
+      const selectedPalette = allThemes[palette];
+
       if (selectedPalette) {
         const root = window.document.documentElement;
         localStorage.setItem('theme-palette', palette);
 
-        // We apply both light and dark vars so they are available for the CSS to use
-        const lightVars = selectedPalette.light;
-        const darkVars = selectedPalette.dark;
-        
-        for (const [key, value] of Object.entries(lightVars)) {
-            root.style.setProperty(key, value);
-        }
-        for (const [key, value] of Object.entries(darkVars)) {
-            root.style.setProperty(key, value);
+        const activeTheme = selectedPalette[theme];
+
+        for (const [key, value] of Object.entries(activeTheme)) {
+            root.style.setProperty(key, value as string);
         }
       }
     }
-  }, [palette, isMounted]);
+  }, [palette, theme, isMounted]);
 
 
   const value = {
