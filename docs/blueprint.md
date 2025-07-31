@@ -1,17 +1,19 @@
-# **App Name**: BaseText
+# **App Name**: Best Day Coaching
 
 ## Core Features:
 
-- Text Display: Display the base text 'cs-app base text'.
-- Font Size Control: Allow users to select a font size for the displayed text.
-- Font Color Control: Allow users to select a font color for the displayed text.
-- Background Color Control: Allow users to select a background color for the displayed text.
-- Visibility Toggle: Implement a button to toggle visibility of the displayed text.
+- Multi-Page Structure: Display a multi-page website with About, Services, Pricing, Testimonials, and Contact pages.
+- Service Cards: Present 6 service cards (Personal Growth, Career Transition, Relationship, Mindfulness, Leadership, Custom) with symbols, descriptions, and links to pricing.
+- Sticky Header: Implement a sticky header displaying the logo, site name, navigation, phone number, and a 'Start Here' button.
+- Contact Information Display: Showcase detailed contact information, including website, email, address, and phone number.
+- AI Pro Tips: AI Pro Tips: LLM tool suggests actionable advice, contextually incorporated in blocks, to help retain your existing clients.
 
 ## Style Guidelines:
 
-- Primary color: Indigo (#4B0082) to give a modern, calm, focused feel.
-- Background color: Light Gray (#E0E0E0), providing a neutral backdrop that keeps the focus on the text.
-- Accent color: Teal (#008080) to highlight interactive elements and provide contrast.
-- Body and headline font: 'Inter' (sans-serif) for clear, readable text at any size.
-- Simple and clean layout with a focus on readability. Place controls at the top and the text display area below.
+- Primary color: A calming blue (#72BCD4), fostering trust and professionalism.
+- Background color: Light, desaturated blue (#E0F7FA), for a clean and open feel.
+- Accent color: A vibrant purple (#9C27B0), for calls to action and important links.
+- Headline font: 'Playfair' (serif) for headlines and short amounts of text; Pairing with 'PT Sans' (sans-serif) for longer body text.
+- Use modern, minimalist icons to represent service categories.
+- Employ a clean, grid-based layout to ensure readability and easy navigation.
+- Use subtle transitions and animations to enhance user engagement.
