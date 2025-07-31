@@ -140,8 +140,6 @@ const otherPrimaryColorThemes = Object.fromEntries(
   ])
 );
 
-export const GREYSCALE_COLORS = ['slate', 'gray', 'zinc', 'neutral', 'stone'];
-
 export const appThemes = {
   primaryColorsThemes: {
     'Red Dominant': {
@@ -316,33 +314,6 @@ export const appThemes = {
       dark: { ...skySerenityTheme.dark, '--primary': '195 53% 79%', '--primary-foreground': '0 0% 0%', '--secondary': '210 40% 96.1%', '--secondary-foreground': '0 0% 0%', '--accent': '224 82% 52%', '--accent-foreground': '0 0% 100%', '--background': '217 33% 18%', '--foreground': '0 0% 100%', '--ring': '195 53% 79%', },
     },
   },
-  greyscaleThemes: {
-    'Slate': {
-      swatchColor: '#64748B',
-      light: { ...skySerenityTheme.light, '--primary': '221 39% 11.2%', '--primary-foreground': '210 40% 98%', '--secondary': '210 40% 96.1%', '--secondary-foreground': '222.2 47.4% 11.2%', '--muted': '210 40% 96.1%', '--muted-foreground': '215.4 16.3% 46.9%', '--accent': '210 40% 96.1%', '--accent-foreground': '222.2 47.4% 11.2%', '--destructive': '0 84.2% 60.2%', '--destructive-foreground': '210 40% 98%', '--border': '214.3 31.8% 91.4%', '--input': '214.3 31.8% 91.4%', '--ring': '222.2 84% 4.9%', },
-      dark: { ...skySerenityTheme.dark, '--primary': '210 40% 98%', '--primary-foreground': '222.2 47.4% 11.2%', '--secondary': '217.2 32.6% 17.5%', '--secondary-foreground': '210 40% 98%', '--muted': '217.2 32.6% 17.5%', '--muted-foreground': '215 20.2% 65.1%', '--accent': '217.2 32.6% 17.5%', '--accent-foreground': '210 40% 98%', '--destructive': '0 62.8% 30.6%', '--destructive-foreground': '210 40% 98%', '--border': '217.2 32.6% 17.5%', '--input': '217.2 32.6% 17.5%', '--ring': '210 40% 98%', },
-    },
-    'Gray': {
-      swatchColor: '#6B7280',
-      light: { ...skySerenityTheme.light, '--primary': '222.2 84% 4.9%', '--primary-foreground': '210 40% 98%', '--secondary': '210 40% 96.1%', '--secondary-foreground': '222.2 47.4% 11.2%', '--muted': '210 40% 96.1%', '--muted-foreground': '215.4 16.3% 46.9%', '--accent': '210 40% 96.1%', '--accent-foreground': '222.2 47.4% 11.2%', '--destructive': '0 84.2% 60.2%', '--destructive-foreground': '210 40% 98%', '--border': '214.3 31.8% 91.4%', '--input': '214.3 31.8% 91.4%', '--ring': '222.2 84% 4.9%', },
-      dark: { ...skySerenityTheme.dark, '--primary': '210 40% 98%', '--primary-foreground': '222.2 47.4% 11.2%', '--secondary': '217.2 32.6% 17.5%', '--secondary-foreground': '210 40% 98%', '--muted': '217.2 32.6% 17.5%', '--muted-foreground': '215 20.2% 65.1%', '--accent': '217.2 32.6% 17.5%', '--accent-foreground': '210 40% 98%', '--destructive': '0 62.8% 30.6%', '--destructive-foreground': '210 40% 98%', '--border': '217.2 32.6% 17.5%', '--input': '217.2 32.6% 17.5%', '--ring': '210 40% 98%', },
-    },
-    'Zinc': {
-      swatchColor: '#71717A',
-      light: { ...skySerenityTheme.light, '--primary': '222.2 84% 4.9%', '--primary-foreground': '210 40% 98%', '--secondary': '210 40% 96.1%', '--secondary-foreground': '222.2 47.4% 11.2%', '--muted': '210 40% 96.1%', '--muted-foreground': '215.4 16.3% 46.9%', '--accent': '210 40% 96.1%', '--accent-foreground': '222.2 47.4% 11.2%', '--destructive': '0 84.2% 60.2%', '--destructive-foreground': '210 40% 98%', '--border': '214.3 31.8% 91.4%', '--input': '214.3 31.8% 91.4%', '--ring': '222.2 84% 4.9%', },
-      dark: { ...skySerenityTheme.dark, '--primary': '210 40% 98%', '--primary-foreground': '222.2 47.4% 11.2%', '--secondary': '217.2 32.6% 17.5%', '--secondary-foreground': '210 40% 98%', '--muted': '217.2 32.6% 17.5%', '--muted-foreground': '215 20.2% 65.1%', '--accent': '217.2 32.6% 17.5%', '--accent-foreground': '210 40% 98%', '--destructive': '0 62.8% 30.6%', '--destructive-foreground': '210 40% 98%', '--border': '217.2 32.6% 17.5%', '--input': '217.2 32.6% 17.5%', '--ring': '210 40% 98%', },
-    },
-    'Neutral': {
-      swatchColor: '#737373',
-      light: { ...skySerenityTheme.light, '--primary': '222.2 84% 4.9%', '--primary-foreground': '210 40% 98%', '--secondary': '210 40% 96.1%', '--secondary-foreground': '222.2 47.4% 11.2%', '--muted': '210 40% 96.1%', '--muted-foreground': '215.4 16.3% 46.9%', '--accent': '210 40% 96.1%', '--accent-foreground': '222.2 47.4% 11.2%', '--destructive': '0 84.2% 60.2%', '--destructive-foreground': '210 40% 98%', '--border': '214.3 31.8% 91.4%', '--input': '214.3 31.8% 91.4%', '--ring': '222.2 84% 4.9%', },
-      dark: { ...skySerenityTheme.dark, '--primary': '210 40% 98%', '--primary-foreground': '222.2 47.4% 11.2%', '--secondary': '217.2 32.6% 17.5%', '--secondary-foreground': '210 40% 98%', '--muted': '217.2 32.6% 17.5%', '--muted-foreground': '215 20.2% 65.1%', '--accent': '217.2 32.6% 17.5%', '--accent-foreground': '210 40% 98%', '--destructive': '0 62.8% 30.6%', '--destructive-foreground': '210 40% 98%', '--border': '217.2 32.6% 17.5%', '--input': '217.2 32.6% 17.5%', '--ring': '210 40% 98%', },
-    },
-    'Stone': {
-      swatchColor: '#78716C',
-      light: { ...skySerenityTheme.light, '--primary': '222.2 84% 4.9%', '--primary-foreground': '210 40% 98%', '--secondary': '210 40% 96.1%', '--secondary-foreground': '222.2 47.4% 11.2%', '--muted': '210 40% 96.1%', '--muted-foreground': '215.4 16.3% 46.9%', '--accent': '210 40% 96.1%', '--accent-foreground': '222.2 47.4% 11.2%', '--destructive': '0 84.2% 60.2%', '--destructive-foreground': '210 40% 98%', '--border': '214.3 31.8% 91.4%', '--input': '214.3 31.8% 91.4%', '--ring': '222.2 84% 4.9%', },
-      dark: { ...skySerenityTheme.dark, '--primary': '210 40% 98%', '--primary-foreground': '222.2 47.4% 11.2%', '--secondary': '217.2 32.6% 17.5%', '--secondary-foreground': '210 40% 98%', '--muted': '217.2 32.6% 17.5%', '--muted-foreground': '215 20.2% 65.1%', '--accent': '217.2 32.6% 17.5%', '--accent-foreground': '210 40% 98%', '--destructive': '0 62.8% 30.6%', '--destructive-foreground': '210 40% 98%', '--border': '217.2 32.6% 17.5%', '--input': '217.2 32.6% 17.5%', '--ring': '210 40% 98%', },
-    },
-  },
   bespokeThemes: {
     'SET_1_PALETTE_OceanBlue': {
       swatchColor: '#0077B6',
@@ -481,3 +452,5 @@ export const appThemes = {
     },
   },
 };
+
+      
