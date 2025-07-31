@@ -5,7 +5,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { appThemes } from '@/lib/themes';
 
 type Theme = 'light' | 'dark';
-type PaletteName = keyof typeof appThemes.primaryColorsThemes | keyof typeof appThemes.daisyUIThemes | keyof typeof appThemes.bespokeThemes;
+type PaletteName = keyof typeof appThemes.primaryColorsThemes | keyof typeof appThemes.daisyUIThemes | keyof typeof appThemes.bespokeThemes | keyof typeof appThemes.greyscaleThemes;
 
 interface ThemeProviderState {
   theme: Theme;
@@ -59,7 +59,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (isMounted) {
-      const allThemes = { ...appThemes.primaryColorsThemes, ...appThemes.daisyUIThemes, ...appThemes.bespokeThemes };
+      const allThemes = { ...appThemes.primaryColorsThemes, ...appThemes.daisyUIThemes, ...appThemes.bespokeThemes, ...appThemes.greyscaleThemes };
       const selectedPalette = allThemes[palette];
 
       if (selectedPalette) {
@@ -104,5 +104,3 @@ export const useTheme = () => {
   }
   return context;
 };
-
-      

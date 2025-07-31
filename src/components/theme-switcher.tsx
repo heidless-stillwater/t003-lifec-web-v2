@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Palette, Sun, Moon, Check } from 'lucide-react';
+import { Palette, Sun, Moon, Check, Star, Square, Circle } from 'lucide-react';
 import { useTheme } from '@/components/theme-provider';
 import { Button } from '@/components/ui/button';
 import {
@@ -24,6 +24,26 @@ export function ThemeSwitcher() {
   const primaryColorThemes = Object.entries(appThemes.primaryColorsThemes);
   const daisyUIThemes = Object.entries(appThemes.daisyUIThemes);
   const bespokeThemes = Object.entries(appThemes.bespokeThemes);
+  const greyscaleThemes = Object.entries(appThemes.greyscaleThemes);
+
+  const renderSymbol = (symbol: string | undefined, color: string) => {
+    const style = { color, width: '1rem', height: '1rem', marginRight: '0.5rem' };
+    switch (symbol) {
+      case 'circle':
+        return <Circle style={style} fill={color} />;
+      case 'square':
+        return <Square style={style} fill={color} />;
+      case 'star':
+        return <Star style={style} fill={color} />;
+      default:
+        return (
+          <div
+            className="w-4 h-4 rounded-full mr-2 border"
+            style={{ backgroundColor: color }}
+          ></div>
+        );
+    }
+  };
 
   return (
     <DropdownMenu>
@@ -100,11 +120,29 @@ export function ThemeSwitcher() {
                 <DropdownMenuItem
                   key={name}
                   onClick={() => setPalette(name as keyof typeof appThemes.bespokeThemes)}
+                  className="flex items-center"
                 >
-                  <div
-                    className="w-4 h-4 rounded-full mr-2 border"
-                    style={{ backgroundColor: themeData.swatchColor }}
-                  ></div>
+                  {renderSymbol((themeData as any).symbol, themeData.swatchColor)}
+                  <span>{name}</span>
+                  {palette === name && <Check className="ml-auto h-4 w-4" />}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            <span>Greyscale</span>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              {greyscaleThemes.map(([name, themeData]) => (
+                <DropdownMenuItem
+                  key={name}
+                  onClick={() => setPalette(name as keyof typeof appThemes.greyscaleThemes)}
+                  className="flex items-center"
+                >
+                   {renderSymbol((themeData as any).symbol, themeData.swatchColor)}
                   <span>{name}</span>
                   {palette === name && <Check className="ml-auto h-4 w-4" />}
                 </DropdownMenuItem>
@@ -116,5 +154,3 @@ export function ThemeSwitcher() {
     </DropdownMenu>
   );
 }
-
-      
