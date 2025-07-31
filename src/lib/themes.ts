@@ -683,6 +683,52 @@ export const appThemes = {
         '--ring': '210 79% 65%',
       },
     },
+    'SET_1_PALETTE_8': {
+      swatchColor: '#8A2BE2',
+      symbol: 'square',
+      light: {
+        '--background': '251 100% 97%',
+        '--foreground': '240 10% 20%',
+        '--card': '0 0% 100%',
+        '--card-foreground': '240 10% 20%',
+        '--popover': '0 0% 100%',
+        '--popover-foreground': '240 10% 20%',
+        '--primary': '271 76% 53%',
+        '--primary-foreground': '0 0% 100%',
+        '--secondary': '240 5% 80%',
+        '--secondary-foreground': '240 10% 20%',
+        '--muted': '240 5% 80%',
+        '--muted-foreground': '240 5% 50%',
+        '--accent': '180 100% 50%',
+        '--accent-foreground': '0 0% 100%',
+        '--destructive': '16 100% 50%',
+        '--destructive-foreground': '0 0% 100%',
+        '--border': '240 5% 90%',
+        '--input': '240 5% 90%',
+        '--ring': '271 76% 53%',
+      },
+      dark: {
+        '--background': '240 17% 15%',
+        '--foreground': '210 100% 97%',
+        '--card': '240 16% 20%',
+        '--card-foreground': '210 100% 97%',
+        '--popover': '240 16% 20%',
+        '--popover-foreground': '210 100% 97%',
+        '--primary': '271 76% 53%',
+        '--primary-foreground': '0 0% 100%',
+        '--secondary': '248 76% 59%',
+        '--secondary-foreground': '0 0% 100%',
+        '--muted': '248 76% 59%',
+        '--muted-foreground': '210 100% 87%',
+        '--accent': '180 100% 50%',
+        '--accent-foreground': '240 17% 15%',
+        '--destructive': '16 100% 50%',
+        '--destructive-foreground': '0 0% 100%',
+        '--border': '240 16% 30%',
+        '--input': '240 16% 30%',
+        '--ring': '271 76% 53%',
+      },
+    },
   },
   greyscaleThemes: {
     'Ocean Greyscale': {
@@ -829,3 +875,4 @@ export const appThemes = {
     
 
     
+
