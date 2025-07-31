@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator
 } from '@/components/ui/dropdown-menu';
+import { Switch } from '@/components/ui/switch';
 import { appThemes } from '@/lib/themes';
 
 export function ThemeSwitcher() {
@@ -32,16 +33,17 @@ export function ThemeSwitcher() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>
-          <Sun className="mr-2 h-4 w-4" />
-          <span>Light</span>
-          {theme === 'light' && <Check className="ml-auto h-4 w-4" />}
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
-          <Moon className="mr-2 h-4 w-4" />
-          <span>Dark</span>
-           {theme === 'dark' && <Check className="ml-auto h-4 w-4" />}
-        </DropdownMenuItem>
+        <div className="flex items-center justify-between px-2 py-1.5">
+            <div className="flex items-center gap-2">
+                <Sun className="h-4 w-4" />
+                <Switch
+                    id="theme-mode-switch"
+                    checked={theme === 'dark'}
+                    onCheckedChange={(isDark) => setTheme(isDark ? 'dark' : 'light')}
+                />
+                <Moon className="h-4 w-4" />
+            </div>
+        </div>
         <DropdownMenuSeparator />
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>
