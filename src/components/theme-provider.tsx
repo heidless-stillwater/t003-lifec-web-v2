@@ -27,23 +27,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     
-    if (storedTheme) {
-      setThemeState(storedTheme);
-    } else {
-      setThemeState(systemTheme);
-    }
-
-    if (storedPalette) {
-      setPaletteState(storedPalette);
-    } else {
-      setPaletteState('Sky Serenity');
-    }
+    setThemeState(storedTheme || systemTheme);
+    setPaletteState(storedPalette || 'Sky Serenity');
   }, []);
 
   useEffect(() => {
     if (isMounted) {
-      document.documentElement.classList.remove('light', 'dark');
-      document.documentElement.classList.add(theme);
+      const root = document.documentElement;
+      root.classList.remove('light', 'dark');
+      root.classList.add(theme);
       localStorage.setItem('theme-mode', theme);
     }
   }, [theme, isMounted]);
@@ -53,6 +45,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       const selectedPalette = appThemes.primaryColorsThemes[palette];
       if (selectedPalette) {
         const root = document.documentElement;
+        
+        // Use the appropriate variables based on light/dark mode
         const themeVariables = selectedPalette[theme];
         
         const colorMap = {
@@ -63,15 +57,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
           '--popover': themeVariables['--bg-surface'],
           '--popover-foreground': themeVariables['--text-primary'],
           '--primary': themeVariables['--accent-primary'],
-          '--primary-foreground': selectedPalette.light['--text-primary'], // Keep foreground text consistent for readability
+          '--primary-foreground': theme === 'light' ? selectedPalette.dark['--text-primary'] : selectedPalette.light['--text-primary'],
           '--secondary': themeVariables['--bg-primary'],
           '--secondary-foreground': themeVariables['--text-primary'],
           '--muted': themeVariables['--bg-primary'],
           '--muted-foreground': themeVariables['--text-secondary'],
           '--accent': themeVariables['--accent-secondary'],
-          '--accent-foreground': selectedPalette.light['--text-primary'],
+          '--accent-foreground': theme === 'light' ? selectedPalette.dark['--text-primary'] : selectedPalette.light['--text-primary'],
           '--destructive': themeVariables['--destructive'],
-          '--destructive-foreground': selectedPalette.light['--text-primary'],
+          '--destructive-foreground': theme === 'light' ? selectedPalette.dark['--text-primary'] : selectedPalette.light['--text-primary'],
           '--border': themeVariables['--border-color'],
           '--input': themeVariables['--border-color'],
           '--ring': themeVariables['--accent-primary'],
