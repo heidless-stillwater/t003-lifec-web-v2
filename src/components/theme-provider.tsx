@@ -16,9 +16,9 @@ interface ThemeProviderState {
 const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [isMounted, setIsMounted] = useState(false);
   const [theme, setThemeState] = useState<Theme>('light');
   const [palette, setPaletteState] = useState<PaletteName>('Sky Serenity');
-  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -26,95 +26,57 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       const storedTheme = localStorage.getItem('theme-mode') as Theme | null;
       const storedPalette = localStorage.getItem('theme-palette') as PaletteName | null;
       
-      if (storedTheme) {
-        setThemeState(storedTheme);
-      } else {
-        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        setThemeState(systemTheme);
-      }
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      setThemeState(storedTheme || systemTheme);
+      setPaletteState(storedPalette || 'Sky Serenity');
 
-      if (storedPalette) {
-        setPaletteState(storedPalette);
-      } else {
-        setPaletteState('Sky Serenity');
-      }
     } catch (e) {
-      // Gracefully handle environments where localStorage is not available.
+      // In case of error or non-browser environment
       setThemeState('light');
       setPaletteState('Sky Serenity');
     }
   }, []);
-
-  const setTheme = (newTheme: Theme) => {
-    const root = window.document.documentElement;
-    root.classList.remove('light', 'dark');
-    root.classList.add(newTheme);
-    localStorage.setItem('theme-mode', newTheme);
-    setThemeState(newTheme);
-  };
   
-  const setPalette = (newPalette: PaletteName) => {
-    localStorage.setItem('theme-palette', newPalette);
-    setPaletteState(newPalette);
-  }
+  useEffect(() => {
+    if (isMounted) {
+      const root = window.document.documentElement;
+      root.classList.remove('light', 'dark');
+      root.classList.add(theme);
+      localStorage.setItem('theme-mode', theme);
+    }
+  }, [theme, isMounted]);
 
   useEffect(() => {
     if (isMounted) {
       const selectedPalette = appThemes.primaryColorsThemes[palette];
       if (selectedPalette) {
         const root = window.document.documentElement;
-        const themeVariables = selectedPalette[theme];
-        
-        const colorMap = {
-          '--background': themeVariables['--bg-primary'],
-          '--foreground': themeVariables['--text-primary'],
-          '--card': themeVariables['--bg-surface'],
-          '--card-foreground': themeVariables['--text-primary'],
-          '--popover': themeVariables['--bg-surface'],
-          '--popover-foreground': themeVariables['--text-primary'],
-          '--primary': themeVariables['--accent-primary'],
-          '--primary-foreground': theme === 'light' ? selectedPalette.dark['--text-primary'] : selectedPalette.light['--text-primary'],
-          '--secondary': themeVariables['--bg-primary'],
-          '--secondary-foreground': themeVariables['--text-primary'],
-          '--muted': themeVariables['--bg-primary'],
-          '--muted-foreground': themeVariables['--text-secondary'],
-          '--accent': themeVariables['--accent-secondary'],
-          '--accent-foreground': theme === 'light' ? selectedPalette.dark['--text-primary'] : selectedPalette.light['--text-primary'],
-          '--destructive': themeVariables['--destructive'],
-          '--destructive-foreground': theme === 'light' ? selectedPalette.dark['--text-primary'] : selectedPalette.light['--text-primary'],
-          '--border': themeVariables['--border-color'],
-          '--input': themeVariables['--border-color'],
-          '--ring': themeVariables['--accent-primary'],
-        };
+        localStorage.setItem('theme-palette', palette);
 
-        for (const [key, value] of Object.entries(colorMap)) {
-            if (value) {
-                root.style.setProperty(key, `hsl(${value})`);
-            }
+        // We apply both light and dark vars so they are available for the CSS to use
+        const lightVars = selectedPalette.light;
+        const darkVars = selectedPalette.dark;
+        
+        for (const [key, value] of Object.entries(lightVars)) {
+            root.style.setProperty(key, value);
+        }
+        for (const [key, value] of Object.entries(darkVars)) {
+            root.style.setProperty(key, value);
         }
       }
     }
-  }, [palette, theme, isMounted]);
-
-  useEffect(() => {
-    if (isMounted) {
-        const root = window.document.documentElement;
-        root.classList.remove('light', 'dark');
-        root.classList.add(theme);
-    }
-  }, [theme, isMounted]);
+  }, [palette, isMounted]);
 
 
   const value = {
     theme,
-    setTheme,
+    setTheme: setThemeState,
     palette,
-    setPalette,
+    setPalette: setPaletteState,
   };
   
   if (!isMounted) {
-    // Render nothing on the server and on the initial client render to avoid hydration mismatches.
-    return null; 
+    return null;
   }
 
   return (

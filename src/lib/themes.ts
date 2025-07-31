@@ -3,56 +3,64 @@ export const PRIMARY_COLORS = [
   'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose'
 ];
 
-export const appThemes = {
-  // Nested structure for the 'Primary Colors' submenu
-  primaryColorsThemes: {
-    // 1. Red Dominant
-    'Red Dominant': {
-      swatchColor: '#DC2626', // Red 600
-      light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '358 75% 59%', 
-        '--accent-secondary': '142 71% 45%', 
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
-      },
-      dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '358 75% 59%',
-        '--accent-secondary': '142 71% 45%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
-      },
-    },
+const skySerenityTheme = {
+  swatchColor: '#0284C7', // Sky 600
+  light: {
+    '--light-background': '0 0% 100%',
+    '--light-foreground': '222.2 84% 4.9%',
+    '--light-card': '0 0% 100%',
+    '--light-card-foreground': '222.2 84% 4.9%',
+    '--light-popover': '0 0% 100%',
+    '--light-popover-foreground': '222.2 84% 4.9%',
+    '--light-primary': '195 49% 64%',
+    '--light-primary-foreground': '210 40% 98%',
+    '--light-secondary': '210 40% 96.1%',
+    '--light-secondary-foreground': '222.2 47.4% 11.2%',
+    '--light-muted': '210 40% 96.1%',
+    '--light-muted-foreground': '215.4 16.3% 46.9%',
+    '--light-accent': '291 64% 42%',
+    '--light-accent-foreground': '0 0% 98%',
+    '--light-destructive': '0 84.2% 60.2%',
+    '--light-destructive-foreground': '0 0% 98%',
+    '--light-border': '214.3 31.8% 91.4%',
+    '--light-input': '214.3 31.8% 91.4%',
+    '--light-ring': '195 49% 64%',
+  },
+  dark: {
+    '--dark-background': '222.2 84% 4.9%',
+    '--dark-foreground': '210 40% 98%',
+    '--dark-card': '222.2 84% 4.9%',
+    '--dark-card-foreground': '210 40% 98%',
+    '--dark-popover': '222.2 84% 4.9%',
+    '--dark-popover-foreground': '210 40% 98%',
+    '--dark-primary': '195 49% 64%',
+    '--dark-primary-foreground': '222.2 47.4% 11.2%',
+    '--dark-secondary': '217.2 32.6% 17.5%',
+    '--dark-secondary-foreground': '210 40% 98%',
+    '--dark-muted': '217.2 32.6% 17.5%',
+    '--dark-muted-foreground': '215 20.2% 65.1%',
+    '--dark-accent': '291 64% 42%',
+    '--dark-accent-foreground': '210 40% 98%',
+    '--dark-destructive': '0 62.8% 30.6%',
+    '--dark-destructive-foreground': '210 40% 98%',
+    '--dark-border': '217.2 32.6% 17.5%',
+    '--dark-input': '217.2 32.6% 17.5%',
+    '--dark-ring': '195 49% 64%',
+  },
+};
 
+const otherPrimaryColorThemes = Object.fromEntries(
+  Object.entries({
     // 2. Orange Zest
     'Orange Zest': {
       swatchColor: '#EA580C', // Orange 600
        light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '25 95% 53%', 
-        '--accent-secondary': '190 81% 54%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
-      },
+        '--light-primary': '25 95% 53%', 
+        '--light-accent': '190 81% 54%',
+       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '25 95% 53%',
-        '--accent-secondary': '190 81% 54%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '25 95% 53%',
+        '--dark-accent': '190 81% 54%',
       },
     },
 
@@ -60,24 +68,12 @@ export const appThemes = {
     'Amber Glow': {
       swatchColor: '#D97706', // Amber 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '39 92% 51%',
-        '--accent-secondary': '217 91% 60%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '39 92% 51%',
+        '--light-accent': '217 91% 60%',
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '39 92% 51%',
-        '--accent-secondary': '217 91% 60%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '39 92% 51%',
+        '--dark-accent': '217 91% 60%',
       },
     },
 
@@ -85,24 +81,12 @@ export const appThemes = {
     'Yellow Sunshine': {
       swatchColor: '#CA8A04', // Yellow 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '48 96% 47%',
-        '--accent-secondary': '262 88% 66%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '48 96% 47%',
+        '--light-accent': '262 88% 66%',
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '48 96% 47%',
-        '--accent-secondary': '262 88% 66%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '48 96% 47%',
+        '--dark-accent': '262 88% 66%',
       },
     },
 
@@ -110,24 +94,12 @@ export const appThemes = {
     'Lime Zest': {
       swatchColor: '#65A30D', // Lime 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '74 85% 35%',
-        '--accent-secondary': '0 84.2% 60.2%', 
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '74 85% 35%',
+        '--light-accent': '0 84.2% 60.2%', 
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '74 85% 35%',
-        '--accent-secondary': '0 84.2% 60.2%', 
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '74 85% 35%',
+        '--dark-accent': '0 84.2% 60.2%', 
       },
     },
 
@@ -135,24 +107,12 @@ export const appThemes = {
     'Forest Green': {
       swatchColor: '#16A34A', // Green 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '145 74% 39%',
-        '--accent-secondary': '221 83% 53%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '145 74% 39%',
+        '--light-accent': '221 83% 53%',
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '145 74% 39%',
-        '--accent-secondary': '221 83% 53%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '145 74% 39%',
+        '--dark-accent': '221 83% 53%',
       },
     },
 
@@ -160,24 +120,12 @@ export const appThemes = {
     'Emerald Depth': {
       swatchColor: '#059669', // Emerald 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '160 91% 30%',
-        '--accent-secondary': '39 92% 51%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '160 91% 30%',
+        '--light-accent': '39 92% 51%',
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '160 91% 30%',
-        '--accent-secondary': '39 92% 51%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '160 91% 30%',
+        '--dark-accent': '39 92% 51%',
       },
     },
 
@@ -185,24 +133,12 @@ export const appThemes = {
     'Teal Tranquility': {
       swatchColor: '#0D9488', // Teal 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '175 84% 32%',
-        '--accent-secondary': '336 82% 59%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '175 84% 32%',
+        '--light-accent': '336 82% 59%',
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '175 84% 32%',
-        '--accent-secondary': '336 82% 59%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '175 84% 32%',
+        '--dark-accent': '336 82% 59%',
       },
     },
 
@@ -210,99 +146,24 @@ export const appThemes = {
     'Cyan Energy': {
       swatchColor: '#06B6D4', // Cyan 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '187 95% 42%',
-        '--accent-secondary': '351 89% 60%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '187 95% 42%',
+        '--light-accent': '351 89% 60%',
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '187 95% 42%',
-        '--accent-secondary': '351 89% 60%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '187 95% 42%',
+        '--dark-accent': '351 89% 60%',
       },
     },
-
-    // 10. Sky Serenity
-    'Sky Serenity': {
-      swatchColor: '#0284C7', // Sky 600
-      light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '200 98% 39%',
-        '--accent-secondary': '262 88% 66%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
-      },
-      dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '200 98% 39%',
-        '--accent-secondary': '262 88% 66%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
-      },
-    },
-
-    // 11. Bold Blue
-    'Bold Blue': {
-      swatchColor: '#2563EB', // Blue 600
-      light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '224 82% 52%',
-        '--accent-secondary': '336 82% 59%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
-      },
-      dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '224 82% 52%',
-        '--accent-secondary': '336 82% 59%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
-      },
-    },
-
     // 12. Indigo Depth
     'Indigo Depth': {
       swatchColor: '#4F46E5', // Indigo 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '242 79% 58%',
-        '--accent-secondary': '39 92% 51%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '242 79% 58%',
+        '--light-accent': '39 92% 51%',
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '242 79% 58%',
-        '--accent-secondary': '39 92% 51%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '242 79% 58%',
+        '--dark-accent': '39 92% 51%',
       },
     },
 
@@ -310,24 +171,12 @@ export const appThemes = {
     'Violet Dream': {
       swatchColor: '#7C3AED', // Violet 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '255 83% 63%',
-        '--accent-secondary': '53 98% 50%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '255 83% 63%',
+        '--light-accent': '53 98% 50%',
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '255 83% 63%',
-        '--accent-secondary': '53 98% 50%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '255 83% 63%',
+        '--dark-accent': '53 98% 50%',
       },
     },
 
@@ -335,24 +184,12 @@ export const appThemes = {
     'Royal Purple': {
       swatchColor: '#9333EA', // Purple 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '271 83% 56%',
-        '--accent-secondary': '190 81% 54%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '271 83% 56%',
+        '--light-accent': '190 81% 54%',
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '271 83% 56%',
-        '--accent-secondary': '190 81% 54%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '271 83% 56%',
+        '--dark-accent': '190 81% 54%',
       },
     },
 
@@ -360,24 +197,12 @@ export const appThemes = {
     'Fuchsia Burst': {
       swatchColor: '#C026D3', // Fuchsia 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '296 79% 49%',
-        '--accent-secondary': '173 58% 39%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '296 79% 49%',
+        '--light-accent': '173 58% 39%',
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '296 79% 49%',
-        '--accent-secondary': '173 58% 39%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '296 79% 49%',
+        '--dark-accent': '173 58% 39%',
       },
     },
 
@@ -385,24 +210,12 @@ export const appThemes = {
     'Vibrant Pink': {
       swatchColor: '#DB2777', // Pink 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '327 79% 51%',
-        '--accent-secondary': '190 81% 54%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '327 79% 51%',
+        '--light-accent': '190 81% 54%',
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '327 79% 51%',
-        '--accent-secondary': '190 81% 54%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '327 79% 51%',
+        '--dark-accent': '190 81% 54%',
       },
     },
 
@@ -410,26 +223,131 @@ export const appThemes = {
     'Rose Garden': {
       swatchColor: '#E11D48', // Rose 600
       light: {
-        '--bg-primary': '0 0% 100%', 
-        '--bg-surface': '0 0% 100%',
-        '--text-primary': '222.2 84% 4.9%',
-        '--text-secondary': '215.4 16.3% 46.9%', 
-        '--accent-primary': '348 83% 50%',
-        '--accent-secondary': '221 83% 53%',
-        '--destructive': '0 84.2% 60.2%', 
-        '--border-color': '214.3 31.8% 91.4%', 
+        '--light-primary': '348 83% 50%',
+        '--light-accent': '221 83% 53%',
       },
       dark: {
-        '--bg-primary': '222.2 84% 4.9%',
-        '--bg-surface': '222.2 84% 4.9%',
-        '--text-primary': '210 40% 98%',
-        '--text-secondary': '215 20.2% 65.1%',
-        '--accent-primary': '348 83% 50%',
-        '--accent-secondary': '221 83% 53%',
-        '--destructive': '0 62.8% 30.6%',
-        '--border-color': '217.2 32.6% 17.5%',
+        '--dark-primary': '348 83% 50%',
+        '--dark-accent': '221 83% 53%',
       },
     },
+  }).map(([name, theme]) => [
+    name,
+    {
+      ...theme,
+      light: {
+        ...skySerenityTheme.light,
+        ...theme.light,
+        '--light-ring': theme.light['--light-primary'],
+      },
+      dark: {
+        ...skySerenityTheme.dark,
+        ...theme.dark,
+        '--dark-ring': theme.dark['--dark-primary'],
+      }
+    }
+  ])
+);
+
+export const appThemes = {
+  // Nested structure for the 'Primary Colors' submenu
+  primaryColorsThemes: {
+    // 1. Red Dominant
+    'Red Dominant': {
+      swatchColor: '#DC2626', // Red 600
+      light: {
+        '--light-background': '0 0% 100%',
+        '--light-foreground': '222.2 84% 4.9%',
+        '--light-card': '0 0% 100%',
+        '--light-card-foreground': '222.2 84% 4.9%',
+        '--light-popover': '0 0% 100%',
+        '--light-popover-foreground': '222.2 84% 4.9%',
+        '--light-primary': '358 75% 59%',
+        '--light-primary-foreground': '0 0% 98%',
+        '--light-secondary': '210 40% 96.1%',
+        '--light-secondary-foreground': '222.2 47.4% 11.2%',
+        '--light-muted': '210 40% 96.1%',
+        '--light-muted-foreground': '215.4 16.3% 46.9%',
+        '--light-accent': '142 71% 45%',
+        '--light-accent-foreground': '0 0% 98%',
+        '--light-destructive': '0 84.2% 60.2%',
+        '--light-destructive-foreground': '0 0% 98%',
+        '--light-border': '214.3 31.8% 91.4%',
+        '--light-input': '214.3 31.8% 91.4%',
+        '--light-ring': '358 75% 59%',
+      },
+      dark: {
+        '--dark-background': '222.2 84% 4.9%',
+        '--dark-foreground': '210 40% 98%',
+        '--dark-card': '222.2 84% 4.9%',
+        '--dark-card-foreground': '210 40% 98%',
+        '--dark-popover': '222.2 84% 4.9%',
+        '--dark-popover-foreground': '210 40% 98%',
+        '--dark-primary': '358 75% 59%',
+        '--dark-primary-foreground': '0 0% 98%',
+        '--dark-secondary': '217.2 32.6% 17.5%',
+        '--dark-secondary-foreground': '210 40% 98%',
+        '--dark-muted': '217.2 32.6% 17.5%',
+        '--dark-muted-foreground': '215 20.2% 65.1%',
+        '--dark-accent': '142 71% 45%',
+        '--dark-accent-foreground': '0 0% 98%',
+        '--dark-destructive': '0 62.8% 30.6%',
+        '--dark-destructive-foreground': '210 40% 98%',
+        '--dark-border': '217.2 32.6% 17.5%',
+        '--dark-input': '217.2 32.6% 17.5%',
+        '--dark-ring': '358 75% 59%',
+      },
+    },
+    // 10. Sky Serenity
+    'Sky Serenity': skySerenityTheme,
+
+    // 11. Bold Blue
+    'Bold Blue': {
+      swatchColor: '#2563EB', // Blue 600
+      light: {
+        '--light-background': '0 0% 100%', 
+        '--light-foreground': '222.2 84% 4.9%',
+        '--light-card': '0 0% 100%',
+        '--light-card-foreground': '222.2 84% 4.9%',
+        '--light-popover': '0 0% 100%',
+        '--light-popover-foreground': '222.2 84% 4.9%',
+        '--light-primary': '224 82% 52%',
+        '--light-primary-foreground': '0 0% 98%',
+        '--light-secondary': '210 40% 96.1%',
+        '--light-secondary-foreground': '222.2 47.4% 11.2%',
+        '--light-muted': '210 40% 96.1%',
+        '--light-muted-foreground': '215.4 16.3% 46.9%',
+        '--light-accent': '336 82% 59%',
+        '--light-accent-foreground': '0 0% 98%',
+        '--light-destructive': '0 84.2% 60.2%',
+        '--light-destructive-foreground': '0 0% 98%',
+        '--light-border': '214.3 31.8% 91.4%',
+        '--light-input': '214.3 31.8% 91.4%',
+        '--light-ring': '224 82% 52%',
+      },
+      dark: {
+        '--dark-background': '222.2 84% 4.9%',
+        '--dark-foreground': '210 40% 98%',
+        '--dark-card': '222.2 84% 4.9%',
+        '--dark-card-foreground': '210 40% 98%',
+        '--dark-popover': '222.2 84% 4.9%',
+        '--dark-popover-foreground': '210 40% 98%',
+        '--dark-primary': '224 82% 52%',
+        '--dark-primary-foreground': '0 0% 98%',
+        '--dark-secondary': '217.2 32.6% 17.5%',
+        '--dark-secondary-foreground': '210 40% 98%',
+        '--dark-muted': '217.2 32.6% 17.5%',
+        '--dark-muted-foreground': '215 20.2% 65.1%',
+        '--dark-accent': '336 82% 59%',
+        '--dark-accent-foreground': '0 0% 98%',
+        '--dark-destructive': '0 62.8% 30.6%',
+        '--dark-destructive-foreground': '210 40% 98%',
+        '--dark-border': '217.2 32.6% 17.5%',
+        '--dark-input': '217.2 32.6% 17.5%',
+        '--dark-ring': '224 82% 52%',
+      },
+    },
+    ...otherPrimaryColorThemes,
   },
   daisyUIThemes: {
     'Forest': {
