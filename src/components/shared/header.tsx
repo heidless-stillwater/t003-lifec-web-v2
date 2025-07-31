@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/logo';
 import { cn } from '@/lib/utils';
+import { ThemeSwitcher } from '@/components/theme-switcher';
 
 const navLinks = [
   { href: '/about', label: 'About' },
@@ -43,7 +44,7 @@ export function AppHeader() {
             <NavLink key={link.href} {...link} />
           ))}
         </nav>
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden items-center gap-2 md:flex">
           <Button variant="ghost" size="sm" asChild>
             <a href="tel:+1-555-123-4567">
               <Phone className="mr-2 h-4 w-4" />
@@ -53,6 +54,7 @@ export function AppHeader() {
           <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
             <Link href="/contact">Start Here</Link>
           </Button>
+          <ThemeSwitcher />
         </div>
         <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger asChild className="md:hidden">
@@ -75,6 +77,7 @@ export function AppHeader() {
                   <NavLink key={link.href} {...link} />
                 ))}
                 <div className="mt-auto flex flex-col gap-4">
+                 <ThemeSwitcher />
                   <Button variant="outline" asChild>
                     <a href="tel:+1-555-123-4567">
                       <Phone className="mr-2 h-4 w-4" />
