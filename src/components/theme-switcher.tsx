@@ -23,6 +23,8 @@ export function ThemeSwitcher() {
 
   const primaryColorThemes = Object.entries(appThemes.primaryColorsThemes);
   const daisyUIThemes = Object.entries(appThemes.daisyUIThemes);
+  const greyscaleThemes = Object.entries(appThemes.greyscaleThemes);
+  const bespokeThemes = Object.entries(appThemes.bespokeThemes);
 
   return (
     <DropdownMenu>
@@ -77,6 +79,50 @@ export function ThemeSwitcher() {
                 <DropdownMenuItem
                   key={name}
                   onClick={() => setPalette(name as keyof typeof appThemes.daisyUIThemes)}
+                >
+                  <div
+                    className="w-4 h-4 rounded-full mr-2 border"
+                    style={{ backgroundColor: themeData.swatchColor }}
+                  ></div>
+                  <span>{name}</span>
+                  {palette === name && <Check className="ml-auto h-4 w-4" />}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            <span>Greyscale</span>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              {greyscaleThemes.map(([name, themeData]) => (
+                <DropdownMenuItem
+                  key={name}
+                  onClick={() => setPalette(name as keyof typeof appThemes.greyscaleThemes)}
+                >
+                  <div
+                    className="w-4 h-4 rounded-full mr-2 border"
+                    style={{ backgroundColor: themeData.swatchColor }}
+                  ></div>
+                  <span>{name}</span>
+                  {palette === name && <Check className="ml-auto h-4 w-4" />}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            <span>Bespoke</span>
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              {bespokeThemes.map(([name, themeData]) => (
+                <DropdownMenuItem
+                  key={name}
+                  onClick={() => setPalette(name as keyof typeof appThemes.bespokeThemes)}
                 >
                   <div
                     className="w-4 h-4 rounded-full mr-2 border"
