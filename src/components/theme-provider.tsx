@@ -26,8 +26,18 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const storedPalette = localStorage.getItem('theme-palette') as PaletteName | null;
     
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    setThemeState(storedTheme || systemTheme);
-    setPaletteState(storedPalette || 'Sky Serenity');
+    
+    if (storedTheme) {
+      setThemeState(storedTheme);
+    } else {
+      setThemeState(systemTheme);
+    }
+
+    if (storedPalette) {
+      setPaletteState(storedPalette);
+    } else {
+      setPaletteState('Sky Serenity');
+    }
   }, []);
 
   useEffect(() => {
@@ -37,7 +47,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem('theme-mode', theme);
     }
   }, [theme, isMounted]);
-
+  
   useEffect(() => {
     if (isMounted) {
       const selectedPalette = appThemes.primaryColorsThemes[palette];
@@ -45,32 +55,31 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         const root = document.documentElement;
         const themeVariables = selectedPalette[theme];
         
-        // These are the variables from globals.css that need to be updated
-        const colorMap: { [key: string]: string } = {
-          '--background': themeVariables['--bg-primary']?.replace(/ /g, ', ') || '',
-          '--foreground': themeVariables['--text-primary']?.replace(/ /g, ', ') || '',
-          '--card': themeVariables['--bg-surface']?.replace(/ /g, ', ') || '',
-          '--card-foreground': themeVariables['--text-primary']?.replace(/ /g, ', ') || '',
-          '--popover': themeVariables['--bg-surface']?.replace(/ /g, ', ') || '',
-          '--popover-foreground': themeVariables['--text-primary']?.replace(/ /g, ', ') || '',
-          '--primary': themeVariables['--accent-primary']?.replace(/ /g, ', ') || '',
-          '--primary-foreground': selectedPalette.light['--text-primary']?.replace(/ /g, ', ') || '',
-          '--secondary': themeVariables['--bg-primary']?.replace(/ /g, ', ') || '', // Using bg-primary as secondary
-          '--secondary-foreground': themeVariables['--text-primary']?.replace(/ /g, ', ') || '',
-          '--muted': themeVariables['--bg-primary']?.replace(/ /g, ', ') || '', // Using bg-primary as muted
-          '--muted-foreground': themeVariables['--text-secondary']?.replace(/ /g, ', ') || '',
-          '--accent': themeVariables['--accent-secondary']?.replace(/ /g, ', ') || '',
-          '--accent-foreground': selectedPalette.light['--text-primary']?.replace(/ /g, ', ') || '',
-          '--destructive': themeVariables['--destructive']?.replace(/ /g, ', ') || '',
-          '--destructive-foreground': selectedPalette.light['--text-primary']?.replace(/ /g, ', ') || '',
-          '--border': themeVariables['--border-color']?.replace(/ /g, ', ') || '',
-          '--input': themeVariables['--border-color']?.replace(/ /g, ', ') || '',
-          '--ring': themeVariables['--accent-primary']?.replace(/ /g, ', ') || ''
+        const colorMap = {
+          '--background': themeVariables['--bg-primary'],
+          '--foreground': themeVariables['--text-primary'],
+          '--card': themeVariables['--bg-surface'],
+          '--card-foreground': themeVariables['--text-primary'],
+          '--popover': themeVariables['--bg-surface'],
+          '--popover-foreground': themeVariables['--text-primary'],
+          '--primary': themeVariables['--accent-primary'],
+          '--primary-foreground': selectedPalette.light['--text-primary'], // Keep foreground text consistent for readability
+          '--secondary': themeVariables['--bg-primary'],
+          '--secondary-foreground': themeVariables['--text-primary'],
+          '--muted': themeVariables['--bg-primary'],
+          '--muted-foreground': themeVariables['--text-secondary'],
+          '--accent': themeVariables['--accent-secondary'],
+          '--accent-foreground': selectedPalette.light['--text-primary'],
+          '--destructive': themeVariables['--destructive'],
+          '--destructive-foreground': selectedPalette.light['--text-primary'],
+          '--border': themeVariables['--border-color'],
+          '--input': themeVariables['--border-color'],
+          '--ring': themeVariables['--accent-primary'],
         };
         
         for (const [key, value] of Object.entries(colorMap)) {
             if (value) {
-                root.style.setProperty(key, value);
+                root.style.setProperty(key, `hsl(${value})`);
             }
         }
         
@@ -79,15 +88,20 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, [palette, theme, isMounted]);
 
+
   const value = {
     theme,
-    setTheme: setThemeState,
+    setTheme: (newTheme: Theme) => {
+      setThemeState(newTheme);
+    },
     palette,
-    setPalette: setPaletteState,
+    setPalette: (newPalette: PaletteName) => {
+      setPaletteState(newPalette);
+    },
   };
-
+  
   if (!isMounted) {
-    return null;
+    return null; 
   }
 
   return (
