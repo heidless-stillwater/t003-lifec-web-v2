@@ -29,8 +29,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       
-      setThemeState(storedTheme || systemTheme);
-      setPaletteState(storedPalette || 'Sky Serenity');
+      if (storedTheme) {
+        setThemeState(storedTheme);
+      } else {
+        setThemeState(systemTheme);
+      }
+      
+      if (storedPalette) {
+        setPaletteState(storedPalette);
+      } else {
+        setPaletteState('Sky Serenity');
+      }
 
     } catch (e) {
       // In case of error or non-browser environment
@@ -57,10 +66,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         const root = window.document.documentElement;
         localStorage.setItem('theme-palette', palette);
 
-        const activeTheme = selectedPalette[theme];
+        // This is a type assertion to inform TypeScript that `selectedPalette` can be indexed by `theme`
+        const activeTheme = (selectedPalette as any)[theme];
 
-        for (const [key, value] of Object.entries(activeTheme)) {
-            root.style.setProperty(key, value as string);
+        if(activeTheme) {
+            for (const [key, value] of Object.entries(activeTheme)) {
+                root.style.setProperty(key, value as string);
+            }
         }
       }
     }
